@@ -1,5 +1,5 @@
 NAME = so_long
-SRCS = so_long.c check_map.c
+SRCS = so_long.c check_map.c render_map.c
 OBJS = $(SRCS:%.c=%.o)
 CC = cc
 RM = rm -f
@@ -9,14 +9,15 @@ LIBFTA = $(LIBFT)/libft.a
 LIBGNL = ./get_next_line
 LIBGNLA = $(LIBGNL)/libgnl.a
 LIBS = -L$(LIBFTA) -lft -L$(LIBGNLA) -lft
+MLXFLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME) $(LIBFTA) $(LIBGNLA)
 
 %.o : %.c 
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 $(NAME): $(LIBFTA) $(LIBGNLA) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFTA) $(LIBGNLA) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFTA) $(LIBGNLA) $(MLXFLAGS) -o $(NAME)
 
 $(LIBFTA):
 	@$(MAKE) -C $(LIBFT)

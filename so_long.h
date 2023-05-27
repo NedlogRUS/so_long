@@ -3,6 +3,7 @@
 
 #include "libft/libft.h"
 #include "get_next_line/get_next_line.h"
+#include <mlx.h>
 #include <stdio.h>
 
 typedef struct s_map
@@ -17,11 +18,19 @@ typedef struct s_map
 	unsigned int	b_x;
 }				t_map;
 
+typedef struct	s_data {
+	void	*img;
+	void	*mlx;
+	void	*win;
+}				t_data;
+
 typedef struct s_game
 {
 	t_map			*map;	
+	t_data			*mlx;
 }				t_game;
 
+void render_map(t_game *sl);
 void	map_print(t_map *map);
 void eror_out(t_game *game, char *eror_message);
 t_map	*new_map(unsigned int lines);
@@ -38,7 +47,5 @@ int check_mvp(t_map *map);
 void fill(t_map *map, char **m, unsigned int x, unsigned int y);
 int	check_chr(t_map *map, char c);
 int file_exists(const char *filename);
-
-
 
 #endif

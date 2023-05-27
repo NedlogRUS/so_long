@@ -14,10 +14,10 @@ void	map_print(t_map *map)
 		printf("%s\n", map->mapchars[i++]);
 }
 
-void eror_out(t_game *game, char *eror_message)
+void eror_out(t_game *sl, char *eror_message)
 {
-	//free_game(game);
-	(void)game;
+	//free_game(sl);
+	(void)sl;
 	ft_putstr_fd(eror_message, 2);
 	exit(1);
 }
@@ -95,6 +95,7 @@ void	start_game(char *mapname)
 	read_map(&sl, mapname);
 	check_map(&sl);
 	map_print(sl.map);
+	render_map(&sl);
 }
 
 int	mapname_validator(char *mapname)

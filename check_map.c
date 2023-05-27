@@ -64,8 +64,8 @@ void fill(t_map *map, char **m, unsigned int x, unsigned int y)
 		|| m[y][x] == '0' || m[y][x] == 'E'
 		|| m[y][x] == 'P'))
 		return ;
-	m[y][x] += 5;
-	if (m[y][x] == 'J')
+	m[y][x] += 7;
+	if (m[y][x] == 'L')
 		return ;
 	fill(map, map->mapchars, x - 1, y);
 	fill(map, map->mapchars, x, y - 1);
