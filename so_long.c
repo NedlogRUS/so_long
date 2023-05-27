@@ -103,16 +103,27 @@ int	mapname_validator(char *mapname)
 
 	len = ft_strlen(mapname);
 	if (len < 4)
-		return (1);
+		return (0);
 	return (ft_strnstr(mapname + (len - 4), ".ber", 4) != NULL);
+}
+
+int file_exists(const char *filename)
+{
+    return access(filename, F_OK) != -1;
 }
 
 int	main(int argc, char **argv)
 {	
 	if (argc != 2)
 		eror_out(NULL, "Incorrect size of argument!\n");
-	if (!mapname_validator(argv[1]))
+	if (!mapname_validator(argv[1]) || mapname_validator(argv[1]) == 0)
     	eror_out(NULL, "name of mapfile must end in .ber !\n");
+	if (!file_exists(argv[1]))
+        eror_out(NULL, "File does not exist!\n");
 	start_game(argv[1]);
     return(0);
 }
+
+//Добавил проверку на наличие файла функцией acces
+//Поменял char static на static char в ГНЛ
+//Поменял проверку в fill if (x <= 0 || x >= ft_strlen(m[y]) || y <= 0...
