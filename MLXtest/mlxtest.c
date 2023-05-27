@@ -16,6 +16,7 @@
 
 #include <mlx.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 typedef struct	s_data {
 	void	*img;
@@ -25,11 +26,21 @@ typedef struct	s_data {
 
 int	close(int keycode, t_data *test)
 {
+	printf("key_hook :%d: !\n", keycode);
 	if(keycode == 53)
 	{
 		mlx_destroy_window(test->mlx, test->win);
 		exit(0);	
 	}
+	return (0);
+}
+
+int	closewindow(void *param)
+{
+	t_data *test = (t_data *)param;
+	printf("Window closed!\n");
+	mlx_destroy_window(test->mlx, test->win);
+	exit(0);
 	return (0);
 }
 
@@ -48,5 +59,6 @@ int	main(void)
 	mlx_put_image_to_window(test.mlx, test.win, test.img, 0, img_height);
 	mlx_put_image_to_window(test.mlx, test.win, test.img, img_width, img_height);
 	mlx_hook(test.win, 2, 1L<<0, close, &test);
+	mlx_hook(test.win, 17, 1L<<0, closewindow, &test);
 	mlx_loop(test.mlx);
 }
