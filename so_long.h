@@ -37,6 +37,7 @@ int check_map_valid_path(t_map *map);
 int check_mvp(t_map *map);
 void fill(t_map *map, char **m, unsigned int x, unsigned int y);
 int	check_chr(t_map *map, char c);
+int file_exists(const char *filename);
 
 
 

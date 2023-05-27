@@ -71,7 +71,7 @@ char	*ft_out(char *buffer)
 
 char	*get_next_line(int fd)
 {
-	char static	*buffer = NULL;
+	static char	*buffer = NULL;
 	char		*out;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
