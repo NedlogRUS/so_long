@@ -9,7 +9,7 @@ void	map_print(t_map *map)
 	printf("Width: %u\n", map->lines);
 	printf("Bears: %u\n", map->num_bears);
 	printf("Cars: %u\n", map->num_cars);
-	printf("Raspberry: %u\n", map->num_raspberry);
+	printf("Honey: %u\n", map->num_honey);
 	while (i < map->lines)
 		printf("%s\n", map->mapchars[i++]);
 }
@@ -95,6 +95,7 @@ void	start_game(char *mapname)
 	read_map(&sl, mapname);
 	check_map(&sl);
 	map_print(sl.map);
+	sl.step_count = 0;
 	render_map(&sl);
 }
 
@@ -108,19 +109,15 @@ int	mapname_validator(char *mapname)
 	return (ft_strnstr(mapname + (len - 4), ".ber", 4) != NULL);
 }
 
-int file_exists(const char *filename)
-{
-    return access(filename, F_OK) != -1;
-}
 
 int	main(int argc, char **argv)
 {	
 	if (argc != 2)
 		eror_out(NULL, "Incorrect size of argument!\n");
 	if (!mapname_validator(argv[1]) || mapname_validator(argv[1]) == 0)
-    	eror_out(NULL, "name of mapfile must end in .ber !\n");
-	if (!file_exists(argv[1]))
-        eror_out(NULL, "File does not exist!\n");
+    	eror_out(NULL, "name of mapfile must end in .ber !\n"); 
+	if (access((argv[1]), F_OK) == -1)
+        eror_out(NULL, "File does not exist!\n");	
 	start_game(argv[1]);
     return(0);
 }

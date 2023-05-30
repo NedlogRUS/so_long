@@ -3,9 +3,9 @@
 
 #include "libft/libft.h"
 #include "get_next_line/get_next_line.h"
-// #include <mlx.h> //FOR_MAC
+#include <mlx.h> //FOR_MAC
 #include <stdio.h>
-#include "./mlx-linux/mlx.h" //FOR_LINUX
+// #include "./mlx-linux/mlx.h" //FOR_LINUX
 
 
 typedef struct s_map
@@ -13,7 +13,7 @@ typedef struct s_map
 	char			**mapchars;
 	unsigned int	columns;
 	unsigned int	lines;
-	unsigned int	num_raspberry;
+	unsigned int	num_honey;
 	unsigned int	num_cars;
 	unsigned int	num_bears;
 	unsigned int	b_y;
@@ -30,6 +30,7 @@ typedef struct s_game
 {
 	t_map			*map;	
 	t_data			*mlx;
+	unsigned int	step_count;
 }				t_game;
 
 void render_map(t_game *sl);
@@ -48,6 +49,9 @@ int check_map_valid_path(t_map *map);
 int check_mvp(t_map *map);
 void fill(t_map *map, char **m, unsigned int x, unsigned int y);
 int	check_chr(t_map *map, char c);
-int file_exists(const char *filename);
+int check_map_size(t_map *map);
+void moves(int i, t_game *sl);
+void move_right(t_game *sl);
+void print_map(t_game *sl);
 
 #endif

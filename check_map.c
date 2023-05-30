@@ -44,7 +44,7 @@ int check_map_components(t_map *map)
 			else if (map->mapchars[i][j] == 'P')
 				map->num_bears += 1;
 			else if (map->mapchars[i][j] == 'C')
-				map->num_raspberry += 1;
+				map->num_honey += 1;
 			else if (map->mapchars[i][j] && map->mapchars[i][j] != '0' && map->mapchars[i][j] != '1')
 				return (1);
 			j++;
@@ -52,7 +52,7 @@ int check_map_components(t_map *map)
 		j = 0;
 		i++;
 	}
-	if (map->num_cars != 1 || map->num_bears != 1 || map->num_raspberry < 1)
+	if (map->num_cars != 1 || map->num_bears != 1 || map->num_honey < 1)
 		return (1);
 	return (0);
 }
@@ -115,6 +115,15 @@ int	check_chr(t_map *map, char c)
 	return (0);
 }
 
+int check_map_size(t_map *map)
+{
+	if(map->columns > 20)
+		return (1);
+	if(map->lines > 11)
+		return (1);
+	return (0);
+}
+
 void	check_map(t_game *sl)
 {
 	if (sl->map->lines == 0)
@@ -127,4 +136,6 @@ void	check_map(t_game *sl)
 		eror_out(sl, "Map has wrong components.\n");
 	if (check_mvp(sl->map) != 0)
 		eror_out(sl, "Map is not passable.\n");
+	if (check_map_size(sl->map) != 0)
+		eror_out(sl, "Map is too big.\n");
 }

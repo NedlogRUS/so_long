@@ -1,5 +1,5 @@
 NAME = so_long
-SRCS = so_long.c check_map.c render_map.c
+SRCS = so_long.c check_map.c render_map.c moves.c
 OBJS = $(SRCS:%.c=%.o)
 CC = cc
 RM = rm -f
@@ -10,19 +10,19 @@ LIBGNL = ./get_next_line
 LIBGNLA = $(LIBGNL)/libgnl.a
 LIBS = -L$(LIBFTA) -lft -L$(LIBGNLA) -lft
 #FOR_MAC
-#MLXFLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
+MLXFLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 #FOR_LINUX
-MLXFLAGS = -Lmlx_linux -lmlx_Linux -L./mlx-linux -Imlx_linux -lXext -lX11 -lm -lz
+#MLXFLAGS = -Lmlx_linux -lmlx_Linux -L./mlx-linux -Imlx_linux -lXext -lX11 -lm -lz
 
 all: $(NAME) $(LIBFTA) $(LIBGNLA)
 
 #FOR_MAC
-# %.o : %.c 
-# 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
+%.o : %.c 
+	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 #FOR_LINUX
-%.o: %.c
-	$(CC) $(CFLAGS) -I./mlx-linux -Imlx_linux -O3 -c $< -o $@
+# %.o: %.c
+# 	$(CC) $(CFLAGS) -I./mlx-linux -Imlx_linux -O3 -c $< -o $@
 
 $(NAME): $(LIBFTA) $(LIBGNLA) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFTA) $(LIBGNLA) $(MLXFLAGS) -o $(NAME)
