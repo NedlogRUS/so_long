@@ -9,12 +9,20 @@ LIBFTA = $(LIBFT)/libft.a
 LIBGNL = ./get_next_line
 LIBGNLA = $(LIBGNL)/libgnl.a
 LIBS = -L$(LIBFTA) -lft -L$(LIBGNLA) -lft
-MLXFLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
+#FOR_MAC
+#MLXFLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
+#FOR_LINUX
+MLXFLAGS = -Lmlx_linux -lmlx_Linux -L./mlx-linux -Imlx_linux -lXext -lX11 -lm -lz
 
 all: $(NAME) $(LIBFTA) $(LIBGNLA)
 
-%.o : %.c 
-	$(CC) $(CFLAGS) -Imlx -c $< -o $@
+#FOR_MAC
+# %.o : %.c 
+# 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
+
+#FOR_LINUX
+%.o: %.c
+	$(CC) $(CFLAGS) -I./mlx-linux -Imlx_linux -O3 -c $< -o $@
 
 $(NAME): $(LIBFTA) $(LIBGNLA) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFTA) $(LIBGNLA) $(MLXFLAGS) -o $(NAME)

@@ -3,8 +3,10 @@
 
 #include "libft/libft.h"
 #include "get_next_line/get_next_line.h"
-#include <mlx.h>
+// #include <mlx.h> //FOR_MAC
 #include <stdio.h>
+#include "./mlx-linux/mlx.h" //FOR_LINUX
+
 
 typedef struct s_map
 {
