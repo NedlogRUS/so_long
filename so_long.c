@@ -96,7 +96,11 @@ void	start_game(char *mapname)
 	check_map(&sl);
 	map_print(sl.map);
 	sl.step_count = 0;
+	srites_path(&sl);
 	render_map(&sl);
+	mlx_hook(sl.mlx->win, 2, 1L<<0, key_hook, &sl);
+	mlx_hook(sl.mlx->win, 17, 1L<<0, closewindow, sl.mlx);
+	mlx_loop(sl.mlx->mlx);
 }
 
 int	mapname_validator(char *mapname)
@@ -116,12 +120,11 @@ int	main(int argc, char **argv)
 		eror_out(NULL, "Incorrect size of argument!\n");
 	if (!mapname_validator(argv[1]) || mapname_validator(argv[1]) == 0)
     	eror_out(NULL, "name of mapfile must end in .ber !\n"); 
-	if (access((argv[1]), F_OK) == -1)
+	if(read(open(argv[1], O_RDONLY), 0, 0) < 0)
         eror_out(NULL, "File does not exist!\n");	
 	start_game(argv[1]);
     return(0);
 }
 
-//Добавил проверку на наличие файла функцией acces
 //Поменял char static на static char в ГНЛ
 //Поменял проверку в fill if (x <= 0 || x >= ft_strlen(m[y]) || y <= 0...

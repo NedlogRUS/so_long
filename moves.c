@@ -16,7 +16,8 @@ void move_right(t_game *sl)
         if(sl->map->mapchars[sl->map->b_y][sl->map->b_x + 1] == 'L')
         {
             if(sl->map->num_honey == 0)
-                break; // END GAME
+                end_game(sl);
+                // break; // END GAME
             else
                 return;
         }
@@ -47,7 +48,8 @@ void move_left(t_game *sl)
         if(sl->map->mapchars[sl->map->b_y][sl->map->b_x - 1] == 'L')
         {
             if(sl->map->num_honey == 0)
-                break; // END GAME
+                end_game(sl);
+                // break; // END GAME
             else
                 return;
         }
@@ -78,7 +80,8 @@ void move_up(t_game *sl)
         if(sl->map->mapchars[sl->map->b_y - 1][sl->map->b_x] == 'L')
         {
             if(sl->map->num_honey == 0)
-                break; // END GAME
+                end_game(sl);
+                // break; // END GAME
             else
                 return;
         }
@@ -109,7 +112,8 @@ void move_down(t_game *sl)
         if(sl->map->mapchars[sl->map->b_y + 1][sl->map->b_x] == 'L')
         {
             if(sl->map->num_honey == 0)
-                break; // END GAME
+                end_game(sl);
+                // break; // END GAME
             else
                 return;
         }
@@ -126,12 +130,12 @@ void move_down(t_game *sl)
 
 void moves(int i, t_game *sl)
 {
-    if(i == 124)
+    if(i == 124 || i == 2)
         move_right(sl);
-    if(i == 123)
+    if(i == 123 || i == 0)
         move_left(sl);
-    if(i == 126)
+    if(i == 126 || i == 13)
         move_up(sl);
-    if(i == 125)
+    if(i == 125 || i == 1)
         move_down(sl);
 }
