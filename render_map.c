@@ -20,16 +20,30 @@ int	closewindow(void *param)
 	return (0);
 }
 
-int	key_hook(int keycode, t_game *sl)
+// int	key_hook(int keycode, t_game *sl) //HOOK FOR MAC
+// {
+// 	printf("key_hook :%d: !\n", keycode);
+// 	if(keycode == 123)
+// 		moves(123, sl);
+// 	if(keycode == 124)
+// 		moves(124, sl);
+// 	if(keycode == 125)
+// 		moves(125, sl);
+// 	if(keycode == 126)
+// 		moves(126, sl);
+// 	return (0);
+// }
+
+int	key_hook(int keycode, t_game *sl) //HOOK FOR LINUX
 {
 	printf("key_hook :%d: !\n", keycode);
-	if(keycode == 123)
+	if(keycode == 65361)
 		moves(123, sl);
-	if(keycode == 124)
+	if(keycode == 65363)
 		moves(124, sl);
-	if(keycode == 125)
+	if(keycode == 65364)
 		moves(125, sl);
-	if(keycode == 126)
+	if(keycode == 65362)
 		moves(126, sl);
 	return (0);
 }
