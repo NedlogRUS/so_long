@@ -14,14 +14,6 @@ void	map_print(t_map *map)
 		printf("%s\n", map->mapchars[i++]);
 }
 
-void eror_out(t_game *sl, char *eror_message)
-{
-	//free_game(sl);
-	(void)sl;
-	ft_putstr_fd(eror_message, 2);
-	exit(1);
-}
-
 t_map	*new_map(unsigned int lines)
 {
 	t_map	*map;

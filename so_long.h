@@ -65,7 +65,6 @@ int check_map_size(t_map *map);
 void moves(int i, t_game *sl);
 void print_map(t_game *sl);
 void end_game(t_game *sl);
-int	close_q(int keycode, t_data *mlx);
 int	closewindow(void *param);
 int	key_hook(int keycode, t_game *sl);
 void srites_path(t_game *sl);

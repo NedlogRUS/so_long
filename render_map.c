@@ -1,48 +1,5 @@
 #include "so_long.h"
 
-int	key_hook(int keycode, t_game *sl) //HOOK FOR MAC
-{
-	if(keycode == 53)
-	{
-		mlx_destroy_window(sl->mlx->mlx, sl->mlx->win);
-        printf("Window closed from press ESC!\n"); // DONT FORGET FREE
-		exit(0);	
-	}
-	if(keycode == 0 || keycode == 13 || keycode == 2 || keycode == 1)
-		moves(keycode, sl);
-	else if(keycode == 123 || keycode == 126 || keycode == 124 || keycode == 125)
-		moves(keycode, sl);
-	return (0);
-}
-
-int	closewindow(void *param)
-{
-	t_data *mlx = (t_data *)param;
-	printf("Window closed from press cross!\n"); // DONT FORGET FREE
-	mlx_destroy_window(mlx->mlx, mlx->win);
-	exit(0);
-	return (0);
-}
-
-// int	key_hook(int keycode, t_game *sl) //HOOK FOR LINUX
-// {
-// 	if(keycode == 53)
-// 	{
-// 		mlx_destroy_window(sl->mlx->mlx, sl->mlx->win);
-//         printf("Window closed from press ESC!\n"); // DONT FORGET FREE
-// 		exit(0);	
-// 	}
-// 	if(keycode == 65361)
-// 		moves(123, sl);
-// 	if(keycode == 65363)
-// 		moves(124, sl);
-// 	if(keycode == 65364)
-// 		moves(125, sl);
-// 	if(keycode == 65362)
-// 		moves(126, sl);
-// 	return (0);
-// }
-
 void srites_path(t_game *sl)
 {
 	sl->sprite = ft_calloc(1, sizeof(t_sprites));

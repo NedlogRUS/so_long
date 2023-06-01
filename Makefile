@@ -1,5 +1,5 @@
 NAME = so_long
-SRCS = so_long.c check_map.c render_map.c moves.c
+SRCS = so_long.c check_map.c render_map.c moves.c exit.c
 OBJS = $(SRCS:%.c=%.o)
 CC = cc
 RM = rm -f
