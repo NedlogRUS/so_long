@@ -79,37 +79,49 @@ void	*file_to_image(t_game *sl, char *path)
 	return (img);
 }
 
-void print_map(t_game *sl)
+void	*chose_img(t_game *sl, char symbol)
 {
-	unsigned int x, y;
-	for (y = 0; y < sl->map->lines; y++)
-	{
-		for (x = 0; x < sl->map->columns; x++)
-		{
-			char symbol = sl->map->mapchars[y][x];
-			void *img;
-
-			if (symbol == '1')
-				img = sl->sprite->wall;
-			else if (symbol == '7' || symbol == '0')
-				img = sl->sprite->field; 
-			else if (symbol == 'W')
-				img = sl->sprite->bear; 
-			else if (symbol == 'P')
-				img = sl->sprite->bearr; 
-			else if (symbol == 'J')
-				img = sl->sprite->honey; 
-			else if (symbol == 'L' && sl->map->num_honey > 0)
-				img = sl->sprite->car; 
-			else if (symbol == 'L' && sl->map->num_honey == 0)
-				img = sl->sprite->caronfire; 
-			else
-				continue;
-			mlx_put_image_to_window(sl->mlx->mlx, sl->mlx->win, img, x * 100, y * 100);
-		}
-	}
+	if (symbol == '1')
+		return sl->sprite->wall;
+	else if (symbol == '7' || symbol == '0')
+		return sl->sprite->field; 
+	else if (symbol == 'W')
+		return sl->sprite->bear; 
+	else if (symbol == 'P')
+		return sl->sprite->bearr; 
+	else if (symbol == 'J')
+		return sl->sprite->honey; 
+	else if (symbol == 'L' && sl->map->num_honey > 0)
+		return sl->sprite->car; 
+	else if (symbol == 'L' && sl->map->num_honey == 0)
+		return sl->sprite->caronfire; 
+	else return (NULL);
 }
 
+void print_map(t_game *sl)
+{
+	unsigned int x;
+	unsigned int y;
+	char symbol;
+	void *img;
+
+	x = 0;
+	y = 0;
+	while(y < sl->map->lines)
+	{
+		while(x < sl->map->columns)
+		{
+			symbol = sl->map->mapchars[y][x];
+			img = chose_img(sl, symbol);
+			if(!img)
+				eror_out(sl, "Image selection failed!\n");
+			mlx_put_image_to_window(sl->mlx->mlx, sl->mlx->win, img, x * 100, y * 100);
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+}
 
 void end_game(t_game *sl)
 {

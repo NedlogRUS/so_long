@@ -63,7 +63,6 @@ void fill(t_map *map, char **m, unsigned int x, unsigned int y);
 int	check_chr(t_map *map, char c);
 int check_map_size(t_map *map);
 void moves(int i, t_game *sl);
-void move_right(t_game *sl);
 void print_map(t_game *sl);
 void end_game(t_game *sl);
 int	close_q(int keycode, t_data *mlx);
@@ -72,5 +71,7 @@ int	key_hook(int keycode, t_game *sl);
 void srites_path(t_game *sl);
 void init_sprites(t_game *sl);
 void	*file_to_image(t_game *sl, char *path);
+void move_to(t_game *sl, unsigned int y, unsigned int x, char c);
+void	*chose_img(t_game *sl, char symbol);
 
 #endif

@@ -125,6 +125,3 @@ int	main(int argc, char **argv)
 	start_game(argv[1]);
     return(0);
 }
-
-//Поменял char static на static char в ГНЛ
-//Поменял проверку в fill if (x <= 0 || x >= ft_strlen(m[y]) || y <= 0...
