@@ -10,7 +10,8 @@ void srites_path(t_game *sl)
 	sl->sprite->path[4] = "./sprites/honey.xpm";
 	sl->sprite->path[5] = "./sprites/car.xpm";
 	sl->sprite->path[6] = "./sprites/caronfire.xpm";
-	// sl->sprite->path[7] = "./sprites/caronfireb.xpm";
+	sl->sprite->path[7] = "./sprites/bearincar.xpm";
+	sl->sprite->path[8] = "./sprites/win.xpm";
 }
 
 void init_sprites(t_game *sl)
@@ -22,6 +23,8 @@ void init_sprites(t_game *sl)
 	sl->sprite->honey = file_to_image(sl, sl->sprite->path[4]);
 	sl->sprite->car = file_to_image(sl, sl->sprite->path[5]);
 	sl->sprite->caronfire = file_to_image(sl, sl->sprite->path[6]);
+	sl->sprite->bearincar = file_to_image(sl, sl->sprite->path[7]);
+	sl->sprite->win = file_to_image(sl, sl->sprite->path[8]);
 }
 
 void	*file_to_image(t_game *sl, char *path)
@@ -52,6 +55,8 @@ void	*chose_img(t_game *sl, char symbol)
 		return sl->sprite->car; 
 	else if (symbol == 'L' && sl->map->num_honey == 0)
 		return sl->sprite->caronfire; 
+	else if (symbol == 'X')
+		return sl->sprite->bearincar; 
 	else return (NULL);
 }
 
@@ -93,16 +98,4 @@ void print_map(t_game *sl)
 	sl->mlx->win = mlx_new_window(sl->mlx->mlx, sl->map->columns * 100, sl->map->lines * 100, "MLX_TEST");
 	init_sprites(sl);
 	print_map(sl);
-}
-
-void end_game(t_game *sl, unsigned int y, unsigned int x)
-{
-	sl->end_count = 1;
-	sl->map->mapchars[sl->map->b_y][sl->map->b_x] = '7';
-	sl->map->mapchars[y][x] = 'J';
-	sl->map->b_y = y;
-	sl->map->b_x = x;
-	sl->step_count += 1;
-	print_map(sl);
-	mlx_loop(sl->mlx->mlx);
 }

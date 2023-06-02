@@ -109,9 +109,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		eror_out(NULL, "Incorrect size of argument!\n");
 	if (!mapname_validator(argv[1]) || mapname_validator(argv[1]) == 0)
-    	eror_out(NULL, "Name of mapfile must end in .ber !\n"); 
-	// if(read(open(argv[1], O_RDONLY), 0, 0) < 0)
-    //     eror_out(NULL, "File does not exist!\n");	
+    	eror_out(NULL, "Name of mapfile must end in .ber !\n"); 	
 	start_game(argv[1]);
     return(0);
 }

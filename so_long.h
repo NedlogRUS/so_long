@@ -27,7 +27,7 @@ typedef struct	s_data {
 }				t_data;
 
 typedef struct	s_sprites {
-	char	*path[7];
+	char	*path[9];
 	void	*field;
 	void	*wall;
 	void	*bear;
@@ -35,6 +35,8 @@ typedef struct	s_sprites {
 	void	*honey;
 	void	*car;
 	void	*caronfire;
+	void	*bearincar;
+	void	*win;
 }				t_sprites;
 
 typedef struct s_game
