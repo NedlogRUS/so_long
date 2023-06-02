@@ -78,36 +78,31 @@ void print_map(t_game *sl)
 		x = 0;
 		y++;
 	}
-}
-
-void end_game(t_game *sl)
-{
-    char	*pathcaronfire = "./sprites/caronfire.xpm";
-    void *img;
-    int		img_width;
-	int		img_height;
-
-    mlx_destroy_window(sl->mlx->mlx, sl->mlx->win);
-    free(sl->mlx);
-    	sl->mlx = ft_calloc(1, sizeof(t_data));
-	sl->mlx->mlx = mlx_init();
-	if(!sl->mlx->mlx)
-		eror_out(sl, "mlx_init failed!\n");
-	sl->mlx->win = mlx_new_window(sl->mlx->mlx, 100, 100, "END_GAME_TEST");
-    img = mlx_xpm_file_to_image(sl->mlx->mlx, pathcaronfire, &img_width, &img_height); 
-    mlx_put_image_to_window(sl->mlx->mlx, sl->mlx->win, img, 0, 0);
-	mlx_hook(sl->mlx->win, 2, 1L<<0, key_hook, sl);
-	mlx_hook(sl->mlx->win, 17, 1L<<0, closewindow, sl->mlx);
-	mlx_loop(sl->mlx->mlx);
+	ft_putnbr_fd(sl->step_count, 1);
+	ft_putstr_fd(" steps\n", 1);
 }
 
 	void render_map(t_game *sl)
 {
 	sl->mlx = ft_calloc(1, sizeof(t_data));
+	if(!sl->mlx)
+		eror_out(sl, "mlx init failed!\n");
 	sl->mlx->mlx = mlx_init();
 	if(!sl->mlx->mlx)
 		eror_out(sl, "mlx_init failed!\n");
 	sl->mlx->win = mlx_new_window(sl->mlx->mlx, sl->map->columns * 100, sl->map->lines * 100, "MLX_TEST");
 	init_sprites(sl);
 	print_map(sl);
+}
+
+void end_game(t_game *sl, unsigned int y, unsigned int x)
+{
+	sl->end_count = 1;
+	sl->map->mapchars[sl->map->b_y][sl->map->b_x] = '7';
+	sl->map->mapchars[y][x] = 'J';
+	sl->map->b_y = y;
+	sl->map->b_x = x;
+	sl->step_count += 1;
+	print_map(sl);
+	mlx_loop(sl->mlx->mlx);
 }

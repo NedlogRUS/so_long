@@ -14,7 +14,7 @@ void	move_to(t_game *sl, unsigned int y, unsigned int x, char c)
 			break ;
 		}
 		if (sl->map->mapchars[y][x] == 'L' && sl->map->num_honey == 0)
-			end_game(sl);
+			end_game(sl, y, x);
 		else
 			return ;
 	}
@@ -29,6 +29,8 @@ void	move_to(t_game *sl, unsigned int y, unsigned int x, char c)
 
 void	moves(int i, t_game *sl)
 {
+	if (sl->end_count > 0)
+		return ;
 	if (i == 124 || i == 2)
 		move_to(sl, sl->map->b_y, sl->map->b_x + 1, 'P');
 	if (i == 123 || i == 0)
@@ -44,7 +46,7 @@ int	key_hook(int keycode, t_game *sl) //HOOK FOR MAC
 	if(keycode == 53)
 	{
 		mlx_destroy_window(sl->mlx->mlx, sl->mlx->win);
-        printf("Window closed from press ESC!\n"); // DONT FORGET FREE
+		system("leaks so_long");
 		exit(0);	
 	}
 	if(keycode == 0 || keycode == 13 || keycode == 2 || keycode == 1)
