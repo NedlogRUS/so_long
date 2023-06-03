@@ -6,8 +6,7 @@ SRCBDIR = srcb
 OBJBDIR = objb
 SRCS = $(addprefix $(SRCDIR)/, so_long.c check_map.c check_map_2.c render_map.c moves.c exit.c)
 OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
-SRCB = $(addprefix $(SRCBDIR)/, so_long_bonus.c check_map_bonus.c check_map_2_bonus.c \
-render_map_bonus.c moves_bonus.c exit_bonus.c)
+SRCB = $(addprefix $(SRCBDIR)/, so_long_bonus.c check_map_bonus.c check_map_2_bonus.c render_map_bonus.c moves_bonus.c exit_bonus.c)
 OBJB = $(patsubst $(SRCBDIR)/%.c, $(OBJBDIR)/%.o, $(SRCB))
 CC = cc
 RM = rm -rf
