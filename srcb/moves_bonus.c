@@ -4,6 +4,8 @@ void	move_to(t_game *sl, unsigned int y, unsigned int x, char c)
 {
 	while (1)
 	{
+		if (sl->map->mapchars[y][x] == 'B')
+			bad_end_game(sl, y, x);
 		if (sl->map->mapchars[y][x] == '1')
 			return ;
 		if (sl->map->mapchars[y][x] == '7')
@@ -18,12 +20,7 @@ void	move_to(t_game *sl, unsigned int y, unsigned int x, char c)
 		else
 			return ;
 	}
-	sl->map->mapchars[sl->map->b_y][sl->map->b_x] = '7';
-	sl->map->mapchars[y][x] = c;
-	sl->map->b_y = y;
-	sl->map->b_x = x;
-	sl->step_count += 1;
-	print_map(sl);
+	move_it(sl, y, x, c);
 	return ;
 }
 
@@ -69,6 +66,14 @@ void	srites_path(t_game *sl)
 	sl->sprite->path[6] = "./sprites/caronfire.xpm";
 	sl->sprite->path[7] = "./sprites/bearincar.xpm";
 	sl->sprite->path[8] = "./sprites/win.xpm";
+	sl->sprite->path[9] = "./sprites/bear2.xpm";
+	sl->sprite->path[10] = "./sprites/bearr2.xpm";
+	sl->sprite->path[11] = "./sprites/caronfire2.xpm";
+	sl->sprite->path[12] = "./sprites/bee.xpm";
+	sl->sprite->path[13] = "./sprites/bee2.xpm";
+	sl->sprite->path[14] = "./sprites/beebear.xpm";
+	sl->sprite->path[15] = "./sprites/lose.xpm";
+	sl->sprite->path[16] = "./sprites/lose.xpm";
 }
 
 int	mapname_validator(char *mapname)

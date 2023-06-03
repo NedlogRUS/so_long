@@ -4,7 +4,6 @@
 # include "../libft/libft.h"
 # include "../get_next_line/get_next_line.h"
 # include <mlx.h>
-# include <stdio.h>
 
 typedef struct s_map
 {
@@ -27,16 +26,25 @@ typedef struct s_data
 
 typedef struct s_sprites
 {
-	char	*path[9];
+	char	*path[17];
 	void	*field;
 	void	*wall;
 	void	*bear;
+	void	*bear2;
 	void	*bearr;
+	void	*bearr2;
 	void	*honey;
 	void	*car;
 	void	*caronfire;
+	void	*caronfire2;
 	void	*bearincar;
 	void	*win;
+	void	*lose;
+	void	*bee;
+	void	*bee2;
+	void	*beebear;
+	void	*tre;
+	void	*tmp;
 }				t_sprites;
 
 typedef struct s_game
@@ -46,6 +54,9 @@ typedef struct s_game
 	t_sprites		*sprite;
 	int				step_count;
 	int				end_count;
+	char			*step_str;
+	char			symbol;
+
 }				t_game;
 
 int		check_rectangular_map(t_map *map);
@@ -59,6 +70,7 @@ int		check_chr(t_map *map, char c);
 int		check_map_size(t_map *map);
 int		clean_out(t_game *sl);
 int		key_hook(int keycode, t_game *sl);
+int		animation(t_game *sl);
 t_map	*new_map(unsigned int lines);
 void	*file_to_image(t_game *sl, char *path);
 void	*chose_img(t_game *sl, char symbol);
@@ -74,5 +86,8 @@ void	srites_path(t_game *sl);
 void	init_sprites(t_game *sl);
 void	move_to(t_game *sl, unsigned int y, unsigned int x, char c);
 void	end_game(t_game *sl, unsigned int y, unsigned int x);
+void	swap_sprites(t_game *sl);
+void	bad_end_game(t_game *sl, unsigned int y, unsigned int x);
+void	move_it(t_game *sl, unsigned int y, unsigned int x, char c);
 
 #endif

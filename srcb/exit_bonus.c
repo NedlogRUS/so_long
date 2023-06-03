@@ -22,7 +22,11 @@ void	end_game(t_game *sl, unsigned int y, unsigned int x)
 	sl->map->b_y = y;
 	sl->map->b_x = x;
 	sl->step_count += 1;
+	free (sl->step_str);
+	sl->step_str = ft_itoa(sl->step_count);
 	print_map(sl);
 	mlx_put_image_to_window(sl->mlx->mlx, sl->mlx->win, sl->sprite->win, 0, 0);
+	mlx_string_put(sl->mlx->mlx, sl->mlx->win, 65, 50, 0xFFFFFF, "STEPS :");
+	mlx_string_put(sl->mlx->mlx, sl->mlx->win, 150, 50, 0xFFFFFF, sl->step_str);
 	mlx_loop(sl->mlx->mlx);
 }

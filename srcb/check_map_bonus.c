@@ -48,7 +48,7 @@ int	check_map_components(t_map *map)
 			else if (map->mapchars[i][j] == 'C')
 				map->num_honey += 1;
 			else if (map->mapchars[i][j] && map->mapchars[i][j] \
-			!= '0' && map->mapchars[i][j] != '1')
+			!= '0' && map->mapchars[i][j] != '1' && map->mapchars[i][j] != 'B')
 				return (1);
 			j++;
 		}

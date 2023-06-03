@@ -11,6 +11,14 @@ void	init_sprites(t_game *sl)
 	sl->sprite->caronfire = file_to_image(sl, sl->sprite->path[6]);
 	sl->sprite->bearincar = file_to_image(sl, sl->sprite->path[7]);
 	sl->sprite->win = file_to_image(sl, sl->sprite->path[8]);
+	sl->sprite->bear2 = file_to_image(sl, sl->sprite->path[9]);
+	sl->sprite->bearr2 = file_to_image(sl, sl->sprite->path[10]);
+	sl->sprite->caronfire2 = file_to_image(sl, sl->sprite->path[11]);
+	sl->sprite->bee = file_to_image(sl, sl->sprite->path[12]);
+	sl->sprite->bee2 = file_to_image(sl, sl->sprite->path[13]);
+	sl->sprite->beebear = file_to_image(sl, sl->sprite->path[14]);
+	sl->sprite->lose = file_to_image(sl, sl->sprite->path[15]);
+	sl->sprite->tre = file_to_image(sl, sl->sprite->path[16]);
 }
 
 void	*file_to_image(t_game *sl, char *path)
@@ -43,6 +51,10 @@ void	*chose_img(t_game *sl, char symbol)
 		return (sl->sprite->caronfire);
 	else if (symbol == 'X')
 		return (sl->sprite->bearincar);
+	else if (symbol == 'B')
+		return (sl->sprite->bee);
+	else if (symbol == 'Q')
+		return (sl->sprite->beebear);
 	else
 		return (NULL);
 }
@@ -51,7 +63,6 @@ void	print_map(t_game *sl)
 {
 	unsigned int	x;
 	unsigned int	y;
-	char			symbol;
 	void			*img;
 
 	x = 0;
@@ -60,8 +71,8 @@ void	print_map(t_game *sl)
 	{
 		while (x < sl->map->columns)
 		{
-			symbol = sl->map->mapchars[y][x];
-			img = chose_img(sl, symbol);
+			sl->symbol = sl->map->mapchars[y][x];
+			img = chose_img(sl, sl->symbol);
 			if (!img)
 				eror_out(sl, "Image selection failed!\n");
 			mlx_put_image_to_window(sl->mlx->mlx, sl->mlx->win, \
@@ -71,8 +82,9 @@ void	print_map(t_game *sl)
 		x = 0;
 		y++;
 	}
-	ft_putnbr_fd(sl->step_count, 1);
-	ft_putstr_fd(" steps\n", 1);
+	mlx_put_image_to_window(sl->mlx->mlx, sl->mlx->win, sl->sprite->tre, 0, 0);
+	mlx_string_put(sl->mlx->mlx, sl->mlx->win, 65, 50, 0xFFFFFF, "STEPS :");
+	mlx_string_put(sl->mlx->mlx, sl->mlx->win, 150, 50, 0xFFFFFF, sl->step_str);
 }
 
 void	render_map(t_game *sl)

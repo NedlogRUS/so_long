@@ -2,9 +2,7 @@
 
 void	fill(t_map *map, char **m, unsigned int x, unsigned int y)
 {
-	if (x <= 0 || x >= ft_strlen(m[y]) || y <= 0
-		|| m[y] == NULL || !(m[y][x] == 'C'
-		|| m[y][x] == '0' || m[y][x] == 'E'
+	if (!(m[y][x] == 'C' || m[y][x] == '0' || m[y][x] == 'E'
 		|| m[y][x] == 'P'))
 		return ;
 	m[y][x] += 7;

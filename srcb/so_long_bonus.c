@@ -73,9 +73,11 @@ void	start_game(char *mapname)
 	read_map(&sl, mapname);
 	check_map(&sl);
 	srites_path(&sl);
+	sl.step_str = ft_itoa(sl.step_count);
 	render_map(&sl);
 	mlx_hook(sl.mlx->win, 2, 1L << 0, key_hook, &sl);
 	mlx_hook(sl.mlx->win, 17, 1L << 0, clean_out, &sl);
+	mlx_loop_hook(sl.mlx->mlx, animation, &sl);
 	mlx_loop(sl.mlx->mlx);
 }
 
