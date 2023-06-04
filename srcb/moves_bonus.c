@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   moves_bonus.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apanikov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/04 18:30:09 by apanikov          #+#    #+#             */
+/*   Updated: 2023/06/04 18:30:10 by apanikov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long_bonus.h"
 
 void	move_to(t_game *sl, unsigned int y, unsigned int x, char c)
@@ -73,7 +85,7 @@ void	srites_path(t_game *sl)
 	sl->sprite->path[13] = "./sprites/bee2.xpm";
 	sl->sprite->path[14] = "./sprites/beebear.xpm";
 	sl->sprite->path[15] = "./sprites/lose.xpm";
-	sl->sprite->path[16] = "./sprites/lose.xpm";
+	sl->sprite->path[16] = "./sprites/tre.xpm";
 }
 
 int	mapname_validator(char *mapname)
